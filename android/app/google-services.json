@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "750238140855",
+    "project_id": "garland-b1221",
+    "storage_bucket": "garland-b1221.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750238140855:android:7533470701ffda620b4032",
+        "android_client_info": {
+          "package_name": "com.garland"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWvjYVhdCABYURC162P3k7wy8BsUEF8OQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
