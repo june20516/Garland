@@ -54,7 +54,9 @@ const Chat: React.FC = () => {
       <FlatList
         data={messages}
         renderItem={({ item }) => (
-          <Text style={styles.message}>{item.text}</Text>
+          <View style={styles.messageRow}>
+            <Text style={styles.message}>{item.text}</Text>
+          </View>
         )}
         keyExtractor={item => item._id}
         inverted
@@ -79,6 +81,10 @@ const styles = StyleSheet.create({
   message: {
     fontSize: 18,
     marginVertical: 2,
+  },
+  messageRow: {
+    borderWidth: 1,
+    borderColor: 'gray',
   },
 });
 
