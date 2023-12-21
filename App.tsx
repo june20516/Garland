@@ -15,8 +15,7 @@ import {
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import Section from './src/components/common/Section';
-import Chat from './src/screens/Chat';
+import Home from './src/screens/Home';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -38,11 +37,8 @@ function App(): React.JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
+          <Home />
         </View>
-        <Chat />
       </ScrollView>
     </SafeAreaView>
   );

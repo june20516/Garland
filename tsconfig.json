@@ -1,3 +1,11 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json"
+  "extends": "@react-native/typescript-config/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".", // 루트 디렉토리 설정
+    "paths": {
+      "components/*": ["./src/components/*"],
+      "services/*": ["./src/services/*"]
+      // 기타 별칭 추가
+    }
+  }
 }
