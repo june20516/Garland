@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
@@ -10,7 +10,7 @@ import Home from './src/screens/Home';
 import { getUser } from './src/services/api/firestore';
 import { User } from './src/services/api/types';
 import Login from './src/screens/Login';
-import Join from 'src/screens/Join';
+import Join from './src/screens/Join';
 
 const Stack = createStackNavigator();
 
@@ -25,7 +25,6 @@ const App = (): React.JSX.Element => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   const rootLayoutStyle = { flex: 1, ...backgroundStyle };
-  const navigate = useNavigation();
 
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<User | null>(null);
@@ -33,7 +32,7 @@ const App = (): React.JSX.Element => {
   useEffect(() => {
     const subscriber = auth().onAuthStateChanged(async userCoreInfo => {
       if (!userCoreInfo) {
-        navigate('login');
+        Stack.Navigator;
         return;
       }
       const userInfo = await getUser(userCoreInfo.uid);
@@ -51,9 +50,14 @@ const App = (): React.JSX.Element => {
       />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Join" component={Join} />
+          {user === null ? (
+            <>
+              <Stack.Screen name="Login" component={Login} />
+              <Stack.Screen name="Join" component={Join} />
+            </>
+          ) : (
+            <Stack.Screen name="Home" component={Home} />
+          )}
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaView>

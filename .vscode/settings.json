@@ -1,0 +1,6 @@
+{
+  "editor.fontSize": 13,
+  "workbench.colorTheme": "Default High Contrast Light",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+}

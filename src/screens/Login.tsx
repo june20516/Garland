@@ -1,10 +1,10 @@
-import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Alert, Text } from 'react-native';
 import { loginUser } from 'services/api/auth';
 import { UserCredentials } from 'services/api/types';
+import { NavigatableScreenProps } from 'src/navigation/props';
 
-const Login: React.FC = ({ navigation }: StackNavigationProp) => {
+const Login: React.FC<NavigatableScreenProps<'Login'>> = ({ navigation }) => {
   const [credentials, setCredentials] = useState<UserCredentials>({
     email: '',
     password: '',
@@ -21,7 +21,7 @@ const Login: React.FC = ({ navigation }: StackNavigationProp) => {
   };
 
   const handleJoin = async () => {
-    navigation;
+    navigation.navigate('Join');
   };
 
   return (
@@ -43,7 +43,7 @@ const Login: React.FC = ({ navigation }: StackNavigationProp) => {
         secureTextEntry
       />
       <Button title="로그인" onPress={handleLogin} />
-      <Button title="가입" onPress={handleLogin} />
+      <Button title="가입" onPress={handleJoin} />
     </View>
   );
 };
