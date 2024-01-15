@@ -1,0 +1,29 @@
+fastlane_version '2.219.0'
+ 
+before_all do
+  ensure_git_branch
+  ensure_git_status_clean
+  git_pull
+end
+ 
+platform :ios do
+  # iOS Lanes
+  # desc 'Fetch certificates and provisioning profiles'
+  # lane :certificates do
+  #   match(app_identifier: 'com.app.bundle', type: 'development', readonly: true)
+  #   match(app_identifier: 'com.app.bundle', type: 'appstore', readonly: true)
+  # end
+  lane :build do
+    gym(
+      clean: true,                     # 이전 빌드 캐시 제거
+    )
+  end
+end
+ 
+platform :android do
+  # Android Lanes
+  lane :build do
+    gradle(task: 'clean', project_dir: 'android/')
+    gradle(task: 'assemble', build_type: 'Release', project_dir: 'android/')
+  end
+end
