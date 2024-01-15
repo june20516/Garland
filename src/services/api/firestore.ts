@@ -1,17 +1,27 @@
 import firestore from '@react-native-firebase/firestore';
 import { User } from './types';
 
+const getDocument = async <T>(
+  collectionPath: string,
+  docId: string,
+): Promise<T> => {
+  try {
+    const docRef = firestore().collection(collectionPath).doc(docId);
+    const docSnapshot = await docRef.get();
+
+    if (docSnapshot.exists) {
+      return docSnapshot.data() as T;
+    } else {
+      throw new Error(`${collectionPath}::#${docId} not found`);
+    }
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
 const getUser = async (userId: string) => {
   try {
-    const userDocument = await firestore()
-      .collection('users')
-      .doc(userId)
-      .get();
-    if (userDocument.exists) {
-      return userDocument.data();
-    } else {
-      throw new Error('User not found');
-    }
+    return getDocument<User>('users', userId);
   } catch (error: any) {
     throw new Error(error.message);
   }

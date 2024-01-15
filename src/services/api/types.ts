@@ -1,3 +1,5 @@
+import { FirebaseAuthTypes } from '@react-native-firebase/auth';
+
 export interface UserCredentials {
   email: string;
   password: string;
@@ -5,14 +7,27 @@ export interface UserCredentials {
 
 export interface UserDetails {
   name: string;
-  ageRange: number;
-  major: string;
-  profileImg: string;
-  specialties: keyof Specialty[];
-  interests: keyof Interest[];
+  ageRange?: number;
+  major?: string;
+  profileImg?: string;
+  specialties: (keyof Specialty)[];
+  interests: (keyof Interest)[];
 }
 
-export interface User extends UserCredentials, UserDetails {}
+export interface UserCore
+  extends Pick<
+    FirebaseAuthTypes.User,
+    'displayName' | 'email' | 'phoneNumber' | 'uid'
+  > {
+  displayName: string | null;
+  email: string | null;
+  phoneNumber: string | null;
+  uid: string;
+}
+
+export interface User extends UserCredentials, UserDetails {
+  core: UserCore;
+}
 
 export enum Specialty {
   Develop = '개발',
